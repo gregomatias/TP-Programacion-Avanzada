@@ -8,10 +8,10 @@ import cajero.Usuario;
 public class App {
 
     public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        int intentosDeLogueo = 3;
+        Usuario usuarioLogueado = null;
 
-     
-        // boolean esUsuarioValido =false;
-       
         /* ####Alta Usuario BD#### */
         CajeroAutomatico ATM = new CajeroAutomatico();
 
@@ -21,32 +21,32 @@ public class App {
 
         System.out.println("Bienvenido al Cajero Automatico ATM\n");
 
-        
+        //Valido 3 intentos de logueo del usuario
+        while (intentosDeLogueo > 0 && usuarioLogueado == null) {
+            intentosDeLogueo--;
+            System.out.println("Ingrese su numero de cuenta Bancaria\n");
+            int numeroCuentaIngresada = scanner.nextInt();
 
-        if (!(BaseDeDatos.retornaUsuarioValidado()==null)) {
-            Scanner scanner = new Scanner(System.in);
-         
+            System.out.println("Ingrese su clave NIP de 5 digitos\n");
+            int claveNIPIngresada = scanner.nextInt();
 
-            boolean usuarioLogueado=true;
+            usuarioLogueado = BaseDeDatos.obtieneUsuario(numeroCuentaIngresada, claveNIPIngresada);
 
-            while (usuarioLogueado) {
-
-                 System.out.println("1-Realizar Deposito 2- Retirar dinero 3 Consulta de Saldo\n");
-                int menuOpciones = scanner.nextInt();
-             //   System.out.println(menuOpciones);
-
-
-                scanner.close();
-                usuarioLogueado=false;
-            }
-     
-
-        } else {
-            System.out.println(
-                    "Disculpe, ha superado la cantidad de intentos, por su seguridad su tarjeta ha sido retenida. llame al Banco");
         }
 
-        //scanner.close();
+         //Si el usuario esta logueado inicia el menu:
+        if (!(usuarioLogueado==null)) {
+            System.out.println("1-Depósito 2-Extracción 3-Consulta de Saldo 4-Deslogueo");
 
+            
+        }else{
+            System.out.println("Ha superado el numero de intentos, por su seguridad retuvimos su tarjeta.");
+        }
+
+
+
+
+        scanner.close();
     }
+
 }
