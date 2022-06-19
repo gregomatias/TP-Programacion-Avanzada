@@ -1,26 +1,31 @@
 package cajero;
 
 public class CajeroAutomatico {
-    private double efectivoDelCajero;
-
-    public CajeroAutomatico(double efectivoDelCajero) {
-        this.efectivoDelCajero = efectivoDelCajero;
-    }
+    private int efectivoDelCajero;
+    private TecladoATM teclado;
+    private PantallaATM pantalla;
+    private RanuraDeDepositoATM ranuraDeDeposito;
+    private DispensadorDeEfectivoATM dispensadorDeEfectivo;
 
     public CajeroAutomatico() {
-        this(10000); //500 billetes de $20
+        this.teclado = new TecladoATM("ES", 100, 50);
+        this.pantalla = new PantallaATM(1920, 1080, "AZUL");
+        this.ranuraDeDeposito = new RanuraDeDepositoATM(100, 50, 100);
+        this.dispensadorDeEfectivo = new DispensadorDeEfectivoATM("EX226", "ARG", 20);
+        this.efectivoDelCajero = this.dispensadorDeEfectivo.cargaBilletes(500);
+
     }
 
     public String retirarEfectivo(double montoRetiro, Usuario usuario) {
-
+        System.out.println("efectivoDelCajero funcion: " + this.efectivoDelCajero);
         if (this.efectivoDelCajero >= montoRetiro) {
 
             if (usuario.getCuentaBancaria().getSaldo() >= montoRetiro) {
 
-              double  resto =montoRetiro%20;
-              System.out.println("Resto: "+resto);
-                if(resto>0){
-                    
+                double resto = montoRetiro % this.dispensadorDeEfectivo.getDenominacion();
+                System.out.println("Resto: " + resto);
+                if (resto > 0) {
+
                     return "El monto a extraer debe ser multiplo de 20\n";
                 }
 
