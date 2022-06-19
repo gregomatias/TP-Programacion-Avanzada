@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 import cajero.BaseDeDatos;
 import cajero.CajeroAutomatico;
-import cajero.CuentaBancaria;
 import cajero.Usuario;
 
 public class App {
@@ -12,17 +11,15 @@ public class App {
         int intentosDeLogueo = 3;
         Usuario usuarioLogueado = null;
         boolean desloguearse = false;
-
-        /* ####Alta Usuario BD#### */
         CajeroAutomatico ATM = new CajeroAutomatico();
-
-        CuentaBancaria cuenta1 = new CuentaBancaria(500, 12345);
-        Usuario usuario1 = new Usuario(54321, cuenta1);
+        
+        /* ####Alta Usuario BD#### */
+        Usuario usuario1 = new Usuario(54321,500,12345);
         BaseDeDatos.altaDeUsuario(usuario1);
 
+         /* ####Valida logueo de usuario por 3 intentos#### */
         System.out.println("Bienvenido al Cajero Automatico ATM\n");
-
-        // Valido 3 intentos de logueo del usuario
+     
         while (intentosDeLogueo > 0 && usuarioLogueado == null) {
             intentosDeLogueo--;
             System.out.println("Ingrese su numero de cuenta Bancaria\n");
@@ -35,7 +32,8 @@ public class App {
 
         }
 
-        // Si el usuario esta logueado inicia el menu:
+         /* ####Si el usuario fue logueado procede con el Menu de Opciones#### */
+         
         if (!(usuarioLogueado == null)) {
 
             while (desloguearse == false) {

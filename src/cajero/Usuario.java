@@ -3,9 +3,9 @@ public class Usuario {
     private int claveNIP;
     private CuentaBancaria cuentaBancaria;
 
-    public Usuario( int claveNIP, CuentaBancaria cuentaBancaria) {
+    public Usuario( int claveNIP,double saldo,int numeroCuenta) {
         this.claveNIP = claveNIP;
-        this.cuentaBancaria = cuentaBancaria;
+        this.cuentaBancaria = new CuentaBancaria(saldo,numeroCuenta);
 
     }
 
