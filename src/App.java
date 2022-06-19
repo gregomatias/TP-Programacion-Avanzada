@@ -19,11 +19,13 @@ public class App {
         BaseDeDatos.altaDeUsuario(new Usuario(54321, 10000, 99999, "admin"));
 
         while (apagarSistema == false) {
-            /* ####esetea el sistema cuendo entra un usuario nuevo:#### */
-            System.out.println("Bienvenido al Cajero Automatico ATM\n");
+
+            /* ####Resetea el sistema cuendo entra un usuario nuevo:#### */
             int intentosDeLogueo = 3;
             boolean desloguearse = false;
             usuarioLogueado = null;
+
+            System.out.println("Bienvenido al Cajero Automatico ATM\n");
 
             /* ####Valida logueo de usuario por 3 intentos#### */
             while (intentosDeLogueo > 0 && usuarioLogueado == null) {
@@ -40,7 +42,7 @@ public class App {
 
             /* ####Si el usuario fue logueado procede con el Menu de Opciones#### */
 
-            if (!(usuarioLogueado == null)) {//Si no esta logueado le retiene la tarjeta.
+            if (!(usuarioLogueado == null)) {// Si no esta logueado,null le retiene la tarjeta.
 
                 while (desloguearse == false) {
 
@@ -89,10 +91,10 @@ public class App {
 
             } else {
                 System.out.println("Ha superado el numero de intentos, por su seguridad retuvimos su tarjeta.");
-            }
+            } // If Usuario logueado
 
         } // While apagarSistema
         scanner.close();
     }// Main
 
-}// Clase
+}// Clase App
