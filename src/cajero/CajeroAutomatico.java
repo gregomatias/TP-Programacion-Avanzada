@@ -8,7 +8,7 @@ public class CajeroAutomatico {
     }
 
     public CajeroAutomatico() {
-        this(10000);
+        this(10000); //500 billetes de $20
     }
 
     public String retirarEfectivo(double montoRetiro, Usuario usuario) {
