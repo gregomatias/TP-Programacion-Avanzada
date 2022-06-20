@@ -2,7 +2,7 @@
 - `UML`:
 https://lucid.app/lucidchart/b90c2cbc-ba32-45ed-82c7-4b43e379508a/edit?viewport_loc=1198%2C165%2C2560%2C1308%2C0_0&invitationId=inv_0b842166-5fdd-4b49-84f4-4cabf114a034#
 
-## Consignas-Requerimiento
+## Requerimiento
 
 >Un banco local pretende instalar una nueva máquina de cajero automático (ATM),
 para permitir a los usuarios (es decir, los clientes del banco) realizar transacciones
@@ -74,9 +74,31 @@ banco (que en nuestra aplicación la representaremos mediante una estructura de
 datos como por ejemplo un Array).
 Una vez que el sistema ejecuta una transacción en forma exitosa, debe volver a
 mostrar el menú principal para que el usuario pueda realizar transacciones
+adicionales. Si el usuario elije salir del sistema, la pantalla debe mostrar un mensaje
+de agradecimiento y después el mensaje de bienvenida para el siguiente usuario.
 
 
+## Consignas
 
-## Dependency Management
+1. Diseñar el diagrama de Casos de Uso UML.
+2. Diseñar el diagrama de Clases UML.
+3. Para la documentación de los diagramas utilizar Lucidchart o cualquier otro
+software para el diseño de diagramas UML.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Actividades
+
+1. Analizar la documentación de requerimientos a fin de determinar el alcance
+del problema, objetos, clases y relaciones que permitan resolver el problema
+de diseño.
+2. Realizar el diagrama de casos de uso para modelar las interacciones entre los
+clientes de un sistema (en este ejemplo práctico, los clientes del banco) y sus
+casos de uso. El objetivo es mostrar los tipos de interacciones que tienen los
+usuarios con un sistema sin proveer los detalles.
+3. Realizar un diagrama de clases que permita modelar las clases en el sistema
+que representa el funcionamiento de un cajero automático y sus
+interrelaciones.
+4. Mapear el diagrama de clases a código Java.
+5. Se deberá hacer una investigación en la documentación del API de Java de la
+clase Scanner para la lectura de datos a través de la entrada por teclado. Esto
+nos permitirá que el usuario pueda interactuar con nuestra aplicación, por
+ejemplo, eligiendo las opciones para depositar o retirar dinero.
