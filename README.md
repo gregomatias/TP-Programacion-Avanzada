@@ -1,6 +1,6 @@
 ## Getting Started
 - `UML`:
-https://lucid.app/lucidchart/b90c2cbc-ba32-45ed-82c7-4b43e379508a/edit?viewport_loc=1198%2C165%2C2560%2C1308%2C0_0&invitationId=inv_0b842166-5fdd-4b49-84f4-4cabf114a034#
+https://github.com/gregomatias/TP-Programacion-Avanzada/blob/master/UML_CajeroATMv1.0.pdf
 
 - `Versiones`:
 https://github.com/gregomatias/TP-Programacion-Avanzada/tags
