@@ -17,7 +17,19 @@ public class DispensadorDeEfectivoATM {
         return cantidadDeBilletes * this.denominacion;
 
     }
+    public String getModelo() {
+        return modelo;
+    }
+    public String getMoneda() {
+        return moneda;
+    }
     public int getDenominacion() {
         return denominacion;
+    }
+
+    @Override
+    public String toString() {
+        
+        return "Dispensador: Denominación: "+getDenominacion()+ " Moneda: "+getMoneda()+" Modelo: "+getModelo();
     }
 }

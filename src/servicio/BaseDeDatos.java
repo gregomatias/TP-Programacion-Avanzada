@@ -1,8 +1,11 @@
-package cajero;
+package servicio;
 
 import java.util.ArrayList;
 
+import usuario.Usuario;
+
 public class BaseDeDatos {
+    
     private static ArrayList<Usuario> baseDeDatos = new ArrayList<Usuario>();
 
     public static void altaDeUsuario(Usuario nuevoUsuario) {
@@ -32,7 +35,6 @@ public class BaseDeDatos {
 
         }
 
-        System.out.println("Numero de cuenta o clave invalido");
         return null;
 
     }

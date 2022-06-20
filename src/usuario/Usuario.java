@@ -1,4 +1,5 @@
-package cajero;
+package usuario;
+
 public class Usuario {
     private int claveNIP;
     private CuentaBancaria cuentaBancaria;

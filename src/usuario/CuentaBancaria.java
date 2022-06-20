@@ -1,4 +1,4 @@
-package cajero;
+package usuario;
 
 public class CuentaBancaria {
     private double saldo;

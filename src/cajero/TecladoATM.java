@@ -16,5 +16,17 @@ public class TecladoATM {
     public String getIdioma() {
         return idioma;
     }
+    public double getAncho() {
+        return ancho;
+    }
+    public double getLargo() {
+        return largo;
+    }
+
+    @Override
+    public String toString() {
+        
+        return "Teclado: Idioma: "+getIdioma()+ " Ancho: "+getAncho()+" Largo: "+getLargo()+"\n";
+    }
 
 }

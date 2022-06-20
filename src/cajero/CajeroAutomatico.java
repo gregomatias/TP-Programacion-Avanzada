@@ -1,7 +1,9 @@
 package cajero;
 
+import usuario.Usuario;
+
 public class CajeroAutomatico {
-    private int efectivoDelCajero;
+    private double efectivoDelCajero;
     private TecladoATM teclado;
     private PantallaATM pantalla;
     private RanuraDeDepositoATM ranuraDeDeposito;
@@ -16,20 +18,29 @@ public class CajeroAutomatico {
 
     }
 
+    /* Valida efectivo del cajero */
     public String retirarEfectivo(double montoRetiro, Usuario usuario) {
-        System.out.println("efectivoDelCajero funcion: " + this.efectivoDelCajero);
+
+        /* Valida efectivo del cajero */
         if (this.efectivoDelCajero >= montoRetiro) {
 
+            /* Valida saldo del usuario */
             if (usuario.getCuentaBancaria().getSaldo() >= montoRetiro) {
 
+                /*
+                 * Valida si es multiplo de la denominacion que en este caso son billetes de $20
+                 */
                 double resto = montoRetiro % this.dispensadorDeEfectivo.getDenominacion();
-                System.out.println("Resto: " + resto);
                 if (resto > 0) {
 
-                    return "El monto a extraer debe ser multiplo de 20\n";
+                    return "El monto a extraer debe ser multiplo de" + this.dispensadorDeEfectivo.getDenominacion()
+                            + "\n";
                 }
 
                 usuario.getCuentaBancaria().setSaldo(usuario.getCuentaBancaria().getSaldo() - montoRetiro);
+
+                this.efectivoDelCajero = this.efectivoDelCajero - montoRetiro;
+
                 return "Retiro de Dinero exitoso, su saldo actual es: " + usuario.getCuentaBancaria().getSaldo() + "\n";
             } else {
                 return "El monto ingresado supera el saldo de su cuenta\n";
@@ -44,8 +55,38 @@ public class CajeroAutomatico {
 
         usuario.getCuentaBancaria().setSaldo(usuario.getCuentaBancaria().getSaldo() + montoDeposito);
 
-        return "Se deposito con exito el saldo en su cuenta. Saldo actual: " + usuario.getCuentaBancaria().getSaldo();
+        return "Se deposito con exito el saldo en su cuenta. Saldo actual: " + usuario.getCuentaBancaria().getSaldo()
+                + "\n";
 
+    }
+
+    public DispensadorDeEfectivoATM getDispensadorDeEfectivo() {
+        return dispensadorDeEfectivo;
+    }
+
+    public double getEfectivoDelCajero() {
+        return efectivoDelCajero;
+    }
+
+    public PantallaATM getPantalla() {
+        return pantalla;
+    }
+
+    public RanuraDeDepositoATM getRanuraDeDeposito() {
+        return ranuraDeDeposito;
+    }
+
+    public TecladoATM getTeclado() {
+        return teclado;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Cajero ATM Efectivo disponible: " + getEfectivoDelCajero() + "\n" + getPantalla()
+                + getRanuraDeDeposito()
+                + getTeclado()
+                + getDispensadorDeEfectivo();
     }
 
 }

@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-import cajero.BaseDeDatos;
 import cajero.CajeroAutomatico;
-import cajero.Usuario;
+import servicio.BaseDeDatos;
+import usuario.Usuario;
 
 public class App {
 
@@ -18,31 +18,42 @@ public class App {
         BaseDeDatos.altaDeUsuario(new Usuario(54321, 500, 12345, "comun"));
         BaseDeDatos.altaDeUsuario(new Usuario(54321, 10000, 99999, "admin"));
 
+        /* #####Informacions del sistema Inicio############ */
+        ATM.getPantalla().imprimir("#########################");
+        ATM.getPantalla().imprimir(ATM);
+        ATM.getPantalla().imprimir("#########################");
+
+        /* #####loop hasta que el Administrador apague el sistema############ */
         while (apagarSistema == false) {
 
-            /* ####Resetea el sistema cuendo entra un usuario nuevo:#### */
+            /* ####Reseteo de datos ante un usuario nuevo:#### */
             int intentosDeLogueo = 3;
             boolean desloguearse = false;
             usuarioLogueado = null;
 
-            System.out.println("Bienvenido al Cajero Automatico ATM\n");
+            ATM.getPantalla().imprimir("\n¡¡Bienvenido al Cajero Automatico ATM!!\n");
 
             /* ####Valida logueo de usuario por 3 intentos#### */
             while (intentosDeLogueo > 0 && usuarioLogueado == null) {
                 intentosDeLogueo--;
-                System.out.println("Ingrese su numero de cuenta Bancaria\n");
+                ATM.getPantalla().imprimir("Ingrese su numero de cuenta Bancaria\n");
+
                 int numeroCuentaIngresada = scanner.nextInt();
 
-                System.out.println("Ingrese su clave NIP de 5 digitos\n");
+                ATM.getPantalla().imprimir("Ingrese su clave NIP de 5 digitos\n");
                 int claveNIPIngresada = scanner.nextInt();
 
                 usuarioLogueado = BaseDeDatos.obtieneUsuario(numeroCuentaIngresada, claveNIPIngresada);
+                if (usuarioLogueado == null) {
+
+                    ATM.getPantalla().imprimir("##Numero de cuenta o clave invalido##\n");
+
+                }
 
             }
 
-            /* ####Si el usuario fue logueado procede con el Menu de Opciones#### */
-
-            if (!(usuarioLogueado == null)) {// Si no esta logueado,null le retiene la tarjeta.
+            /* ####Si el usuario fue logueado(<>NULL) procede con el Menu de Opciones#### */
+            if (!(usuarioLogueado == null)) {
 
                 while (desloguearse == false) {
 
@@ -50,38 +61,40 @@ public class App {
 
                     if (!usuarioLogueado.getTipoDeUsuario().equalsIgnoreCase("admin")) {
 
-                        System.out.println("1-Depósito 2-Extracción 3-Consulta de Saldo 4-Deslogueo\n");
+                        ATM.getPantalla().imprimir("1-Depósito 2-Extracción 3-Consulta de Saldo 4-Deslogueo\n");
+
                         menuOpciones = scanner.nextInt();
 
                     } else {
-                        System.out
-                                .println("1-Depósito 2-Extracción 3-Consulta de Saldo 4-Deslogueo 5-Apagar Sistema\n");
+
+                        ATM.getPantalla()
+                                .imprimir("1-Depósito 2-Extracción 3-Consulta de Saldo 4-Deslogueo 5-Apagar Sistema\n");
+
                         menuOpciones = scanner.nextInt();
                     }
 
                     switch (menuOpciones) {
                         case 1:
-                            System.out.println("Ingrese el monto a depositar\n");
+                            ATM.getPantalla().imprimir("Ingrese el monto a depositar\n");
                             double montoDeposito = scanner.nextDouble();
-                            System.out.println(ATM.depositarFondos(montoDeposito, usuarioLogueado));
+                            ATM.getPantalla().imprimir(ATM.depositarFondos(montoDeposito, usuarioLogueado));
                             break;
                         case 2:
-                            System.out.println("Ingrese el monto a extraer\n");
+                            ATM.getPantalla().imprimir("Ingrese el monto a extraer\n");
                             double montoRetiro = scanner.nextDouble();
-                            System.out.println(ATM.retirarEfectivo(montoRetiro, usuarioLogueado));
+                            ATM.getPantalla().imprimir(ATM.retirarEfectivo(montoRetiro, usuarioLogueado));
                             break;
                         case 3:
-                            System.out
-                                    .println("El saldo de su cuenta es: "
-                                            + usuarioLogueado.getCuentaBancaria().getSaldo() + "\n");
+                            ATM.getPantalla().imprimir("El saldo de su cuenta es: "
+                                    + usuarioLogueado.getCuentaBancaria().getSaldo() + "\n");
                             break;
                         case 4:
-                            System.out.println(
+                            ATM.getPantalla().imprimir(
                                     "Por favor, retire su tarjeta.\n Muchas gracias por operar con cajeros ATM\n");
                             desloguearse = true;
                             break;
                         case 5:
-                            System.out.println("El sistema se esta apagando...\n");
+                            ATM.getPantalla().imprimir("El sistema se esta apagando...\n");
                             desloguearse = true;
                             apagarSistema = true;
                             break;
@@ -89,8 +102,8 @@ public class App {
 
                 }
 
-            } else {
-                System.out.println("Ha superado el numero de intentos, por su seguridad retuvimos su tarjeta.");
+            } else {// Si no esta logueado,null le retiene la tarjeta.
+                ATM.getPantalla().imprimir("Ha superado el numero de intentos, por su seguridad retuvimos su tarjeta.");
             } // If Usuario logueado
 
         } // While apagarSistema

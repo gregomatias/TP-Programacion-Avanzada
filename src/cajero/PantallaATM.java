@@ -1,4 +1,5 @@
 package cajero;
+
 public class PantallaATM {
 
     private double ancho;
@@ -11,5 +12,31 @@ public class PantallaATM {
         this.colorPantalla = colorPantalla;
 
     }
-    
+
+    public void imprimir(String textoAImprimir) {
+        System.out.println(textoAImprimir);
+    }
+
+    public void imprimir(Object textoAImprimir) {
+        System.out.println(textoAImprimir);
+    }
+
+    public double getAncho() {
+        return ancho;
+    }
+
+    public double getLargo() {
+        return largo;
+    }
+
+    public String getColorPantalla() {
+        return colorPantalla;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Pantalla: Color: " + getColorPantalla() + " Largo: " + getLargo() + " Ancho: " + getAncho()+"\n";
+    }
+
 }
