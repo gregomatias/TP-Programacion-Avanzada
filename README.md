@@ -1,9 +1,12 @@
 ## Getting Started
-- `UML`:
+- `Diagrama UML`:
 https://github.com/gregomatias/TP-Programacion-Avanzada/blob/master/UML_CajeroATMv1.0.pdf
 
 - `Versiones`:
 https://github.com/gregomatias/TP-Programacion-Avanzada/tags
+
+- `Diagrama de Casos de Uso`:
+https://github.com/gregomatias/TP-Programacion-Avanzada/blob/master/DiagramaCasosDeUsoCajeroATMv1.0.pdf
 
 ## Requerimiento
 
