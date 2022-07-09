@@ -1,10 +1,10 @@
-package servicio;
+package banco;
 
 import java.util.ArrayList;
 
 import usuario.Usuario;
 
-public class BaseDeDatos {
+public class Banco {
     
     private static ArrayList<Usuario> baseDeDatos = new ArrayList<Usuario>();
 
